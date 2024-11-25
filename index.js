@@ -26,9 +26,7 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.log('error', err));
 
-bot.on(['message', 'callback_query'], (he)=>{
-    console.log('Connected to',he)
-});
+bot.on(['message', 'callback_query'], botChat);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -37,7 +35,3 @@ app.listen(PORT, () => {
 // Start the bot
 bot.launch();
 console.log('Telegram bot is running...');
-
-// Graceful shutdown process
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));

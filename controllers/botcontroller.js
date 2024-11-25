@@ -20,10 +20,11 @@ const UserChat = (req, res)=>{
 }
 
 const botChat= async (ctx) => {
-    console.log('hjello',ctx)
+    console.log('hjello',ctx.update)
     const username = ctx.message?.from?.username || ctx.callbackQuery?.from?.username;
-    const chatId = ctx.chat.id;
-  
+    const chatId = ctx.update?.message?.chat.id;
+    console.log(username,chatId)
+    if (!username || !chatId) return;
     try {
       const now = new Date();
       const user = await UserChatModel.findOne({ username, chatId });
